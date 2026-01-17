@@ -4,8 +4,13 @@
 
 package frc.robot;
 
+import java.util.HashMap;
+import java.util.Optional;
+
 import com.revrobotics.spark.config.ClosedLoopConfig;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
 import swervelib.math.Matter;
@@ -21,7 +26,8 @@ import swervelib.math.Matter;
 public final class Constants
 {
   public static final Vision USING_VISION = Vision.NO_VISION;
-  public static final boolean UPDATE_HEADING_FROM_VISION = false;  //if false heading is only from gyro
+  public static final boolean UPDATE_HEADING_FROM_VISION = true;  //if false heading is only from gyro
+  public static final boolean GET_INITIAL_POSE_FROM_AUTO_ROUTINE = false;  
   public static final double ROBOT_MASS = (148 - 20.3) * 0.453592; // 32lbs * kg per pound
   public static final Matter CHASSIS    = new Matter(new Translation3d(0, 0, Units.inchesToMeters(8)), ROBOT_MASS);
   public static final double LOOP_TIME  = 0.13; //s, 20ms + 110ms sprk max velocity lag
@@ -100,4 +106,25 @@ public final class Constants
     LIMELIGHT_VISION
   }
 
+  public static class Positions {
+    private static final HashMap<String, Pose2d> startingPoseOfAuto;
+
+    static {
+      startingPoseOfAuto = new HashMap<String, Pose2d>();
+      startingPoseOfAuto.put("StandardLeft", new Pose2d(7.2, 7.5, Rotation2d.fromDegrees(-90))); 
+      startingPoseOfAuto.put("StandardRight", new Pose2d(7.2, 0.5, Rotation2d.fromDegrees(90)));
+      startingPoseOfAuto.put("StandardCenter", new Pose2d(7.165, 4, Rotation2d.fromDegrees(180)));
+    }
+
+    public static Optional<Pose2d> getPositionForRobot(String autoName) {
+      Pose2d startingPose = startingPoseOfAuto.get(autoName);
+      if (startingPose == null) {
+        return Optional.empty();
+      }
+      else {
+        return Optional.of(startingPose);
+      }
+        
+    }       
+  }
 }

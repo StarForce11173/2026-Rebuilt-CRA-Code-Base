@@ -62,6 +62,8 @@ public class Robot extends LoggedRobot {
       disabledTimer.stop();
       disabledTimer.reset();
     }
+
+    theRobotContainer.initializeRobotPositionBasedOnAutoRoutine();
   }
 
   @Override

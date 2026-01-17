@@ -26,14 +26,16 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
+import java.util.Optional;
 
 import swervelib.SwerveInputStream;
 
 public class RobotContainer
 {
+  private String robotPoseHasBeenSetFor = "nothing"; 
   final CommandXboxController driverXbox = new CommandXboxController(0);
   //private final Sensation sensation = new Sensation();
-  private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/robot"));
+  private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/ava"));
   // private final TankDriveTrain tankDrive = new TankDriveTrain(driverXbox);
   // private final Conveyor conveyor = new Conveyor();
   // private final Lights lights = new Lights();
@@ -172,5 +174,25 @@ public class RobotContainer
   public void setMotorBrake(boolean brake)
   {
     drivebase.setMotorBrake(brake);
+  }
+
+  public void initializeRobotPositionBasedOnAutoRoutine(){
+    Command autoroutine = getAutonomousCommand();
+    if (autoroutine == null) {
+      return;
+    }
+    String routineName = autoroutine.getName();
+
+    if(robotPoseHasBeenSetFor.equals(routineName)) {
+      return; //already set for this routine
+    }
+
+    Optional<Pose2d> startingPose = Constants.Positions.getPositionForRobot(routineName);
+    if (startingPose.isEmpty()) {
+      return;
+    }
+
+    drivebase.resetOdometry(startingPose.get());
+    robotPoseHasBeenSetFor = routineName;
   }
 }
