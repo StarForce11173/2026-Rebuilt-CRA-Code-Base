@@ -56,9 +56,9 @@ public class RobotContainer
   XboxController m_driverController = new XboxController(OperatorConstants.kDriverControllerPort);
   private final CommandXboxController operatorController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
-//   private String robotPoseHasBeenSetFor = "nothing"; 
+  private String robotPoseHasBeenSetFor = "nothing"; 
 //   //private final Sensation sensation = new Sensation();
-//   private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/ava"));
+  private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/ava"));
 //   // private final TankDriveTrain tankDrive = new TankDriveTrain(driverXbox);
 //   // private final Conveyor conveyor = new Conveyor();
 //   // private final Lights lights = new Lights();
