@@ -25,19 +25,19 @@ public class Climber extends SubsystemBase {
     private ArmFeedforward armFeedforward;
     private boolean initialized;
 
-    public Climber() {
-        initialized = false;
-        motor = new SparkMax(Constants.Climber.MOTOR, SparkLowLevel.MotorType.kBrushless);
-        SparkMaxConfig leverMotorConfig = new SparkMaxConfig();
-        leverMotorConfig.idleMode(SparkBaseConfig.IdleMode.kBrake);
-        leverMotorConfig.inverted(true);
-        leverMotorConfig.encoder.positionConversionFactor(Constants.Climber.RADIANS_PER_REVOLUTION);
-        leverMotorConfig.closedLoop.apply(Constants.Climber.CLOSED_LOOP_CONFIG);
-        motor.configure(leverMotorConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
-        armFeedforward = new ArmFeedforward(Constants.Climber.KS, Constants.Climber.KG, Constants.Climber.KV);
-        armEncoder = motor.getEncoder();
-        armFeedforward = new ArmFeedforward(Constants.Climber.KS, Constants.Climber.KG, Constants.Climber.KV);
-    }
+    // public Climber() {
+    //     initialized = false;
+    //     motor = new SparkMax(Constants.Climber.MOTOR, SparkLowLevel.MotorType.kBrushless);
+    //     SparkMaxConfig leverMotorConfig = new SparkMaxConfig();
+    //     leverMotorConfig.idleMode(SparkBaseConfig.IdleMode.kBrake);
+    //     leverMotorConfig.inverted(true);
+    //     leverMotorConfig.encoder.positionConversionFactor(Constants.Climber.RADIANS_PER_REVOLUTION);
+    //     leverMotorConfig.closedLoop.apply(Constants.Climber.CLOSED_LOOP_CONFIG);
+    //     motor.configure(leverMotorConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
+    //     armFeedforward = new ArmFeedforward(Constants.Climber.KS, Constants.Climber.KG, Constants.Climber.KV);
+    //     armEncoder = motor.getEncoder();
+    //     armFeedforward = new ArmFeedforward(Constants.Climber.KS, Constants.Climber.KG, Constants.Climber.KV);
+    // }
 
     public Command idle() {
         return this.runOnce(() -> {initialized = false; });

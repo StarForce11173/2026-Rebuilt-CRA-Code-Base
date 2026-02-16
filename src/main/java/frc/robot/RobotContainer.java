@@ -187,12 +187,12 @@ public class RobotContainer
       return; //already set for this routine
     }
 
-    Optional<Pose2d> startingPose = Constants.Positions.getPositionForRobot(routineName);
-    if (startingPose.isEmpty()) {
-      return;
-    }
+    // Optional<Pose2d> startingPose = Constants.Positions.getPositionForRobot(routineName);
+    // if (startingPose.isEmpty()) {
+    //   return;
+    // }
 
-    drivebase.resetOdometry(startingPose.get());
+    // drivebase.resetOdometry(startingPose.get());
     robotPoseHasBeenSetFor = routineName;
   }
 }

@@ -15,13 +15,13 @@ public class Sensation
     DigitalInput hopperFrontBeam;
     DigitalInput exitBeam;
 
-    public Sensation()
-    {
-        enterBeam = new DigitalInput(Constants.SensationConstants.enter);
-        hopperBackBeam = new DigitalInput(Constants.SensationConstants.hopperBack);
-        hopperFrontBeam = new DigitalInput(Constants.SensationConstants.hopperFront);
-        exitBeam = new DigitalInput(Constants.SensationConstants.exit);
-    }
+    // public Sensation()
+    // {
+    //     enterBeam = new DigitalInput(Constants.SensationConstants.enter);
+    //     hopperBackBeam = new DigitalInput(Constants.SensationConstants.hopperBack);
+    //     hopperFrontBeam = new DigitalInput(Constants.SensationConstants.hopperFront);
+    //     exitBeam = new DigitalInput(Constants.SensationConstants.exit);
+    // }
 
     public boolean coralPresent() {
         return !enterBeam.get() || !hopperBackBeam.get() || !hopperFrontBeam.get();
