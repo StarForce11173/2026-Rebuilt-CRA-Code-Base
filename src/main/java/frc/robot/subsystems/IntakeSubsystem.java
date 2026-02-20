@@ -9,17 +9,22 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class IntakeSubsystem extends SubsystemBase {
 
     
-        SparkMax intake;
+        SparkMax LeftIntake;
+        SparkMax RightIntake;
     
         public IntakeSubsystem(){
-        intake = new SparkMax(IntakeConstants.kIntakeMotorCanId, MotorType.kBrushless);
+        LeftIntake = new SparkMax(IntakeConstants.kLeftIntakeMotorCanId, MotorType.kBrushless);
+        RightIntake = new SparkMax(IntakeConstants.kRightIntakeMotorCanId, MotorType.kBrushless);
+//67
     }  
         
     public void setIntakeMotors(double speed) {
-        intake.set(speed);
+        LeftIntake.set(speed);
+        RightIntake.set(speed);
     } 
     
     public void stop() {
-        intake.set(0);
+        LeftIntake.set(0);
+        RightIntake.set(0);
     }
 }

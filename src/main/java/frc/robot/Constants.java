@@ -90,7 +90,8 @@ public final class Constants
   public static final class IntakeConstants
   {
     // SPARK MAX CAN ID
-    public static final int kIntakeMotorCanId = 10;
+    public static final int kRightIntakeMotorCanId = 10;
+    public static final int kLeftIntakeMotorCanId = 11;
 
     public static final double kIntakeMotorCurrentLimit = 40;
 
